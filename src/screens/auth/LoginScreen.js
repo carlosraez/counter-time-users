@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator'
 
 import { useForm } from '../../hooks/useForm'
-import bbva  from '../../assets/Logo_BBVA_PNG.png'
+import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png'
 import { startLoginEmailPassword } from '../../actions/actions'
 import { setError, removeError } from '../../actions/ui'
 
@@ -49,7 +49,7 @@ export const LoginScreen = () => {
 	return (
 		<div>
 			<div className="auth__logoContainer">
-				<img src={bbva} alt="bbva-logo" className="card-img-top auth__brandLogo" />
+				<img src={bbvaLogo} alt="bbva-logo-brand" className="card-img-top auth__brandLogo" />
 			</div>
 			{
 				msgError && (
@@ -70,7 +70,7 @@ export const LoginScreen = () => {
 				/>
 			</div>
 			<div className="mb-3">
-				<label  className="form-label">Passoword</label>
+				<label  className="form-label">Password</label>
 				<input 
 					type="password" 
 					onChange={handleInputChange} 
