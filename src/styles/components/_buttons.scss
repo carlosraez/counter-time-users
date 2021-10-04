@@ -1,0 +1,25 @@
+.btn-outline-info {
+    color: $primary;
+    border-color: $primary;
+}
+
+.button:hover {
+        color: #ffff;
+        background-color: $primary !important;
+    
+}
+
+.button__container-handleLogin {
+    padding: 0;
+    margin-top: 10px;
+}
+
+.button__handleLogin {
+    color: $primary;
+    text-decoration: none;
+}
+
+.btnTable {
+    width: 100%;
+    margin-bottom: 10px;    
+} 

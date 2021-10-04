@@ -1,0 +1,23 @@
+.auth__box-container {
+ 
+	max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    margin-top: 100px;
+
+}
+
+.auth__box {
+    border-radius: 5px;
+    color: $primary;
+}
+
+.auth__brandLogo {
+    width: 150px;
+    height: 100px;
+}
+
+.auth__logoContainer {
+    text-align: center;
+}
