@@ -1,15 +1,28 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { finishLogged } from '../../actions/actions'
+
 
 export const UsersScreen = () => {
- 
-   
-    return (
-        <div className="container">
-            <h1>Users</h1>
-            <div className="d-grid gap-2 d-md-flex justify-content">
-            </div>
-          
-            <hr></hr>
-        </div>
-    )
+
+	const dispatch = useDispatch()
+
+	const  handleLogout = () => {
+		dispatch( finishLogged() )
+	}
+
+	return (
+		<>
+			<header className="container">
+				<h1>Welcome</h1>
+				<p>The last time you accessed was</p>
+			</header>
+			<main>
+
+			</main>
+			<footer>
+				<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
+			</footer>
+		</>
+	)
 }
