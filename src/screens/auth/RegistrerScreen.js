@@ -16,18 +16,17 @@ export const RegistrerScreen = () => {
 
 	const [formValues, handleInputChange] = useForm({
 		email: '',
-		password: '',
 		name: '',
-		surname: '',
+		password: '',
 		password2: '',
 	})
     
-	const {email, password, password2, name, surname} = formValues
+	const {email, password, password2, name } = formValues
     
 	const handleRegister = () => { 
-		
+
 		if (isFormValid()) {
-			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, surname))
+			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, ))
 		}
 	}
 
@@ -41,11 +40,7 @@ export const RegistrerScreen = () => {
 			dispatch( setError('Email is not valid') )
       
 			return false
-		} else if (surname.trim().length === 0) {
-			dispatch( setError('Surname is required') )
-      
-			return false
-         
+ 
 		} else if (password !== password2 || password.length < 5) {
 			dispatch( setError('Password should be at least 6 characters and match each other') )
            
@@ -69,8 +64,19 @@ export const RegistrerScreen = () => {
 					</div>
 				)
 			}
+			<div className="mb-3">
+				<label className="form-label">Name</label>
+				<input 
+					type="text" 
+					onChange={handleInputChange} 
+					className="form-control" 
+					name="name" 
+					placeholder="name" 
+					autoComplete="off"
+				/>
+			</div>
 			<div className ="mb-3">
-				<label className="form-label">Your Email</label>
+				<label className="form-label">Email</label>
 				<input 
 					type="email" 
 					onChange={handleInputChange} 
@@ -81,13 +87,13 @@ export const RegistrerScreen = () => {
 				/>
 			</div>
 			<div className="mb-3">
-				<label className="form-label">Your Password</label>
+				<label className="form-label">Password</label>
 				<input 
 					type="password" 
 					onChange={handleInputChange} 
 					className="form-control" 
 					name="password" 
-					placeholder="Password" 
+					placeholder="password" 
 					autoComplete="off"
 				/>
 			</div>
@@ -97,29 +103,7 @@ export const RegistrerScreen = () => {
 					onChange={handleInputChange} 
 					className="form-control" 
 					name="password2" 
-					placeholder="Repeat password" 
-					autoComplete="off"
-				/>
-			</div>
-			<div className="mb-3">
-				<label className="form-label">Name</label>
-				<input 
-					type="text" 
-					onChange={handleInputChange} 
-					className="form-control" 
-					name="name" 
-					placeholder="Your name" 
-					autoComplete="off"
-				/>
-			</div>
-			<div className="mb-3">
-				<label className="form-label">Surname</label>
-				<input 
-					type="text" 
-					onChange={handleInputChange} 
-					className="form-control" 
-					name="surname" 
-					placeholder="Your surname" 
+					placeholder="repeat password" 
 					autoComplete="off"
 				/>
 			</div>

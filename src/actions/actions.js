@@ -16,13 +16,13 @@ export const startLoginEmailPassword = () => {
 	}
 }
 
-export const startRegisterEmailPasswordNameSurname = (email, password, name,surname ) => {
+export const startRegisterEmailPasswordNameSurname = (email,password ,name ) => {
 	return (dispatch) => {
 		dispatch( startLoading() )
 		firebase.auth().createUserWithEmailAndPassword(email, password )
 			.then( async ({ user }) => {
 				await user.updateProfile({ displayName:name })
-				dispatch(login(user.displayName , surname ,user.metadata.lastSignInTime))
+				dispatch(login(user.displayName ,user.metadata.lastSignInTime ))
 				Swal.fire('Thanks for Register!', 'Welkome to BBVA','success' )
 				dispatch(finishLoading())
 			}) 
@@ -35,27 +35,15 @@ export const startRegisterEmailPasswordNameSurname = (email, password, name,surn
 	}
 }
 
-export const login = (name, surname, lastSignTime) => (
+export const login = (name ,lastSignTime ) => (
 	{
 		type: types.login,
 		payload: {
 			name,
-			surname,
 			lastSignTime,
 		}
 	}) 
     
-export const register = (name, surname, lastSignTime) => (
-	{
-		type: types.register,
-		payload: {
-			name,
-			surname,
-			lastSignTime,
-		}
-	}) 
-
-
 export const startLogged = () => (
 	{
 		type: types.startLogged
