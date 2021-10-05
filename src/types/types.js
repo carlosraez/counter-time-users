@@ -8,4 +8,4 @@ export const types = {
 
 	uiStartLoading: '[UI] start Loading',
 	uiFinishLoading: '[UI] finish Loading, '
-}
+};

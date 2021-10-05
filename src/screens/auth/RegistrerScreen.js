@@ -1,56 +1,56 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import validator from 'validator'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import validator from 'validator';
 
-import { useForm } from '../../hooks/useForm'
-import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png'
-import { startRegisterEmailPasswordNameSurname } from '../../actions/actions'
-import { setError, removeError } from '../../actions/ui'
+import { useForm } from '../../hooks/useForm';
+import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png';
+import { startRegisterEmailPasswordNameSurname } from '../../actions/actions';
+import { setError, removeError } from '../../actions/ui';
 
 export const RegistrerScreen = () => {
 
-	const dispatch = useDispatch()
-	const { msgError } = useSelector( state => state.ui )
-	const { loading } = useSelector(state => state.ui)
+	const dispatch = useDispatch();
+	const { msgError } = useSelector( state => state.ui );
+	const { loading } = useSelector(state => state.ui);
 
 	const [formValues, handleInputChange] = useForm({
 		email: '',
 		name: '',
 		password: '',
 		password2: '',
-	})
+	});
     
-	const {email, password, password2, name } = formValues
+	const {email, password, password2, name } = formValues;
     
 	const handleRegister = () => { 
 
 		if (isFormValid()) {
-			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, ))
+			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, ));
 		}
-	}
+	};
 
 	const isFormValid = () => {
 		//aqui hacemos la comprobación del formulario el cual comprobamos que es correcto
 		if (name.trim().length === 0) {
-			dispatch( setError('Name is required') )
+			dispatch( setError('Name is required') );
             
-			return false
+			return false;
 		} else if (!validator.isEmail(email)) {
-			dispatch( setError('Email is not valid') )
+			dispatch( setError('Email is not valid') );
       
-			return false
+			return false;
  
 		} else if (password !== password2 || password.length < 5) {
-			dispatch( setError('Password should be at least 6 characters and match each other') )
+			dispatch( setError('Password should be at least 6 characters and match each other') );
            
-			return false
+			return false;
 		} 
         
-		dispatch( removeError() )
+		dispatch( removeError() );
 		
-		return true
-	}
+		return true;
+	};
 
 	return (
 		<div>
@@ -119,5 +119,5 @@ export const RegistrerScreen = () => {
 				<Link to="/auth/login" className="button__handleLogin" >Already have and acount?</Link>
 			</div>
 		</div>
-	)
-}
+	);
+};

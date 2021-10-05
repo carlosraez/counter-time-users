@@ -1,50 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import validator from 'validator'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import validator from 'validator';
 
-import { useForm } from '../../hooks/useForm'
-import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png'
-import { startLoginEmailPassword } from '../../actions/actions'
-import { setError, removeError } from '../../actions/ui'
+import { useForm } from '../../hooks/useForm';
+import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png';
+import { startLoginEmailPassword } from '../../actions/actions';
+import { setError, removeError } from '../../actions/ui';
 
 export const LoginScreen = () => {
 
-	const dispatch = useDispatch()
-	const { loading } = useSelector(state => state.ui)
-	const { msgError } = useSelector( state => state.ui )
+	const dispatch = useDispatch();
+	const { loading } = useSelector(state => state.ui);
+	const { msgError } = useSelector( state => state.ui );
 
 	const [formValues, handleInputChange] = useForm({
 		email:'',
 		password:'',
-	})
+	});
     
-	const { email, password } = formValues
+	const { email, password } = formValues;
     
 	const handleLogin = (e) => { 
-		e.preventDefault()
+		e.preventDefault();
          
 		if (isFormValid() ) {
-			dispatch( startLoginEmailPassword(email, password) ) 
+			dispatch( startLoginEmailPassword(email, password) ); 
 		}
-	}
+	};
 
 	const isFormValid = () => {
           
 		if ( !validator.isEmail(email) ) {
-			dispatch( setError('Email is not valid') )
+			dispatch( setError('Email is not valid') );
       
-			return false
+			return false;
 		} 
 		else if ( password.length < 5 ) {
-			dispatch( setError('Password should be at least 6 characters and match each other') )
+			dispatch( setError('Password should be at least 6 characters and match each other') );
            
-			return false
+			return false;
 		} 
         
-		dispatch( removeError() )
-		return true
-	}
+		dispatch( removeError() );
+		return true;
+	};
 
 	return (
 		<div>
@@ -93,5 +93,5 @@ export const LoginScreen = () => {
 				<Link to="/auth/registrer" className="button__handleLogin" >Create New Account</Link>
 			</div>
 		</div>
-	)
-}
+	);
+};

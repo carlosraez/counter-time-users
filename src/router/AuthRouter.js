@@ -1,7 +1,7 @@
-import React from 'react'
-import { Switch,Route,  Redirect } from 'react-router'
-import { LoginScreen } from '../screens/auth/LoginScreen'
-import { RegistrerScreen } from '../screens/auth/RegistrerScreen'
+import React from 'react';
+import { Switch,Route,  Redirect } from 'react-router';
+import { LoginScreen } from '../screens/auth/LoginScreen';
+import { RegistrerScreen } from '../screens/auth/RegistrerScreen';
 
 export const AuthRouter = () => {
 	return (
@@ -22,5 +22,5 @@ export const AuthRouter = () => {
 				</Switch>
 			</div>
 		</div>
-	)
-}
+	);
+};

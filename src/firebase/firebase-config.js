@@ -1,5 +1,5 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -9,9 +9,9 @@ const firebaseConfig = {
 	storageBucket: 'counter-time-user.appspot.com',
 	messagingSenderId: '883707050169',
 	appId: '1:883707050169:web:c814d44936698c2815c368'
-}
+};
   
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-export  { firebase }
+export  { firebase };

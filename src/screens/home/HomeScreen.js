@@ -1,15 +1,15 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { finishLogged } from '../../actions/actions'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { finishLogged } from '../../actions/actions';
 
 
 export const UsersScreen = () => {
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const  handleLogout = () => {
-		dispatch( finishLogged() )
-	}
+		dispatch( finishLogged() );
+	};
 
 	return (
 		<>
@@ -24,5 +24,5 @@ export const UsersScreen = () => {
 				<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
 			</footer>
 		</>
-	)
-}
+	);
+};
