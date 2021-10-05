@@ -1,0 +1,21 @@
+.timer_container {
+    display: flex;
+}
+
+.hour_format {
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.hour_number {
+    color:$secondary;
+    font-size: 51px;
+}
+
+.hour_label {
+    color:$secondary;
+    text-align: center;
+}
+
+
+

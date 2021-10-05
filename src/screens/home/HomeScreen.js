@@ -1,31 +1,32 @@
 import React from 'react';
-import { useDispatch, /*useSelector  */} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { finishLogged } from '../../actions/actions';
 import { Timer } from '../../Components/timer/Timer';
 
 
-export const UsersScreen = () => {
+export const HomeScreen = () => {
 
 	const dispatch = useDispatch();
-	//const { name } = useSelector(state => state.auth);
+	const { lastSignTime, name } = useSelector(state => state.auth);
 
 	const  handleLogout = () => {
 		dispatch( finishLogged() );
 	};
 
-	const name  = 'Carlos';
-
 	return (
 		<>
-			<header className="container">
+			<header className="header_container mt-100">
 				<h1>Welcome {name}!</h1>
-				<p>The last time you accessed was</p>
+				<p className="HomeScreen_description">The last time you accessed was</p>
 			</header>
-			<main>
-				<Timer />
+			<main className="d-flex justify-content-center mt-50">
+				<Timer 
+					lastSignTime={lastSignTime}
+
+				/>
 			</main>
-			<footer>
+			<footer className="footer_container mt-100">
 				<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
 			</footer>
 		</>
