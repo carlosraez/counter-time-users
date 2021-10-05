@@ -21,10 +21,10 @@ export const Timer = ({ lastSignTime }) => {
 		const addHoursToSpain = moment(lastSignTime).add(2, 'hours');
 		const pastTime = moment.duration(addHoursToSpain.diff(actualTime));
 		setstate({
-			days: pastTime._data.days === 0 ? '00' : pastTime._data.days,
-			hours: pastTime._data.hours,
-			minutes: pastTime._data.minutes,
-			seconds: pastTime._data.seconds,
+			days:  pastTime._data.days < 10 ? `0${pastTime._data.days}` : pastTime._data.days,
+			hours: pastTime._data.hours < 10 ? `0${pastTime._data.hours}` : pastTime._data.hours,
+			minutes: pastTime._data.minutes < 10 ? `0${pastTime._data.minutes}` : pastTime._data.minutes,
+			seconds: pastTime._data.seconds < 10 ? `0${pastTime._data.seconds}` : pastTime._data.seconds,
 		});
 	
 	}, []);
