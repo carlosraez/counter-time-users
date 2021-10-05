@@ -1,4 +1,8 @@
+import { firebase } from '../firebase/firebase-config'
+import Swal from 'sweetalert2'
+
 import { types } from '../types/types'
+
 import { finishLoading, startLoading } from './ui'
 
 export const startLoginEmailPassword = () => {
@@ -12,29 +16,24 @@ export const startLoginEmailPassword = () => {
 	}
 }
 
-export const startRegisterEmailPasswordNameSurname = (email, password, name, surname) => {
+export const startRegisterEmailPasswordNameSurname = (email, password, name, ) => {
 	return (dispatch) => {
 		dispatch( startLoading() )
-		fetch('http://51.38.51.187:5050/api/v1/auth/sign-up', {
-			method: 'POST',
-			body: JSON.stringify({
-				email,
-				password,
-				name,
-				surname,
-			}),
-			headers: {'Content-Type': 'application/json' }})
-			.then((res) => { 
-
-				if (res.status === 409) { 
-					alert('Email Already exists')
-					dispatch( finishLoading())
-				}
-				if (res.status === 204 ) { 
-					dispatch( finishLoading() )
-					alert('El usuario se ha dado de alta correctamente') }
-				dispatch( startLogged() )
-			})   
+		console.log(email)
+		firebase.auth().createUserWithEmailAndPassword(email, password )
+			.then( async ({ user }) => {
+				await user.updateProfile({ displayName:name })
+				console.log(user.metadata.lastSignInTime)
+				//dispatch(register( user.uid, user.displayName ))
+				Swal.fire('Thanks for Register!', 'Welkome to BBVA','success' )
+				dispatch(finishLoading())
+			}) 
+			.catch( e => { 
+				Swal.fire('Error', e.message, 'error')
+				console.log(e)  
+				dispatch(finishLoading()) 
+			
+			} )
 	}
 }
 

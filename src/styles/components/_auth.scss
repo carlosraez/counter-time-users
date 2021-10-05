@@ -8,16 +8,27 @@
 
 }
 
+@media (max-width: 367px) {
+    .auth__box-container {
+ 
+        margin-top: 40px;   
+
+    }
+}
+
 .auth__box {
+
     border-radius: 5px;
     color: $primary;
 }
 
 .auth__brandLogo {
+
     width: 150px;
 }
 
 .auth__logoContainer {
+    
     text-align: center;
     margin-bottom: 10px;
 }

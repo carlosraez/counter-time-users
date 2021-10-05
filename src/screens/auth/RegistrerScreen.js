@@ -25,7 +25,7 @@ export const RegistrerScreen = () => {
 	const {email, password, password2, name, surname} = formValues
     
 	const handleRegister = () => { 
-        
+		
 		if (isFormValid()) {
 			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, surname))
 		}
