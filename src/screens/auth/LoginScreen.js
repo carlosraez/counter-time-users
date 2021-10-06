@@ -5,7 +5,7 @@ import validator from 'validator';
 
 import { useForm } from '../../hooks/useForm';
 import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png';
-import { startLoginEmailPassword } from '../../actions/actions';
+import { loginUser } from '../../actions/actions';
 import { setError, removeError } from '../../actions/ui';
 
 export const LoginScreen = () => {
@@ -24,7 +24,7 @@ export const LoginScreen = () => {
 		e.preventDefault();
          
 		if (isFormValid() ) {
-			dispatch( startLoginEmailPassword(email, password) ); 
+			dispatch( loginUser(email, password) ); 
 		}
 	};
 

@@ -11,7 +11,7 @@ moment.locale('es', {
 	}
 });
 
-const formatHourString = (itemHour) => {
+const _formatHourString = (itemHour) => {
 	return (itemHour < 10 ? `0${itemHour}` : itemHour);
 };
 
@@ -38,10 +38,10 @@ export const Timer = ({ lastSignTime }) => {
 		let days = Math.abs(pastTime.days());
 
 		setstate({
-			days: formatHourString(days),
-			hours: formatHourString(hours),
-			minutes: formatHourString(minutes),
-			seconds: formatHourString(seconds),
+			days: _formatHourString(days),
+			hours: _formatHourString(hours),
+			minutes: _formatHourString(minutes),
+			seconds: _formatHourString(seconds),
 		});
 	
 	}, [actualTime]);

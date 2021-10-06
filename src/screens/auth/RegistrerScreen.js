@@ -5,7 +5,7 @@ import validator from 'validator';
 
 import { useForm } from '../../hooks/useForm';
 import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png';
-import { startRegisterEmailPasswordNameSurname } from '../../actions/actions';
+import { registerUser } from '../../actions/actions';
 import { setError, removeError } from '../../actions/ui';
 
 export const RegistrerScreen = () => {
@@ -25,7 +25,7 @@ export const RegistrerScreen = () => {
 	const handleRegister = () => { 
 
 		if (isFormValid()) {
-			dispatch( startRegisterEmailPasswordNameSurname(email, password, name, ));
+			dispatch( registerUser(email, password, name, ));
 		}
 	};
 
