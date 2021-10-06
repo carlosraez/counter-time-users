@@ -82,5 +82,8 @@ export const Timer = ({ lastSignTime }) => {
 };
 
 Timer.propTypes = {
-	lastSignTime: PropTypes.string
+	lastSignTime: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
 };
