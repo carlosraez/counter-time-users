@@ -11,6 +11,10 @@ moment.locale('es', {
 	}
 });
 
+const formatHourString = (itemHour) => {
+	return (itemHour < 10 ? `0${itemHour}` : itemHour);
+};
+
 export const Timer = ({ lastSignTime }) => {
 
 	const [actualTime, setActualTime] = useState(moment().format('llll'));
@@ -34,10 +38,10 @@ export const Timer = ({ lastSignTime }) => {
 		let days = Math.abs(pastTime.days());
 
 		setstate({
-			days:  days < 10 ? `0${days}` : days,
-			hours: hours < 10 ? `0${hours}` : hours,
-			minutes: minutes < 10 ? `0${minutes}` : minutes,
-			seconds: seconds < 10 ? `0${seconds}` : seconds,
+			days: formatHourString(days),
+			hours: formatHourString(hours),
+			minutes: formatHourString(minutes),
+			seconds: formatHourString(seconds),
 		});
 	
 	}, [actualTime]);
@@ -78,8 +82,5 @@ export const Timer = ({ lastSignTime }) => {
 };
 
 Timer.propTypes = {
-	lastSignTime: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.number
-	]),
+	lastSignTime: PropTypes.string,
 };

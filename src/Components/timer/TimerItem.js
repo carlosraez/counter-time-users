@@ -12,5 +12,8 @@ export const TimerItem  = ({ value,label }) => {
 
 TimerItem.propTypes = {
 	label: PropTypes.string,
-	value: PropTypes.number
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	]),
 };
