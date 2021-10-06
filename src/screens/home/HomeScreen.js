@@ -12,14 +12,13 @@ export const HomeScreen = () => {
 	const dispatch = useDispatch();
 	const { lastSignTime, name } = useSelector(state => state.auth);
 
-	const  handleLogout = () => {
+	const handleLogout = () => {
 		dispatch( finishLogged() );
 		firebase.auth().signOut().then(() => {
 			Swal.fire('Logout Success', 'BBVA tells you have a good day','success'); 
 		}).catch((e) => {
 			Swal.fire('Error', e.message, 'error');
 		});
-	
 	};
 
 	return (
@@ -31,7 +30,6 @@ export const HomeScreen = () => {
 			<main className="d-flex justify-content-center mt-50">
 				<Timer 
 					lastSignTime={lastSignTime}
-
 				/>
 			</main>
 			<footer className="footer_container mt-100">

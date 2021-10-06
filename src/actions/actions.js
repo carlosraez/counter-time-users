@@ -9,7 +9,7 @@ export const startLoginEmailPassword = (email ,password ) => {
 		dispatch( startLoading() );
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then( ({ user }) => {
-				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
+				dispatch(login(user.displayName, user.metadata.lastSignInTime ));
 				dispatch(startLogged(true));
 				Swal.fire('Your login is Success', 'Welcome to BBVA','success'); 
 				dispatch(finishLoading());
@@ -18,32 +18,29 @@ export const startLoginEmailPassword = (email ,password ) => {
 				Swal.fire('Error', e.message, 'error');
 				console.log(e); 
 				dispatch(finishLoading()); } );
-
-	};
-           
+	};        
 };
 
-export const startRegisterEmailPasswordNameSurname = (email ,password ,name ) => {
+export const startRegisterEmailPasswordNameSurname = (email, password, name) => {
 	return (dispatch) => {
 		dispatch( startLoading() );
 		firebase.auth().createUserWithEmailAndPassword(email, password )
 			.then( async ({ user }) => {
 				await user.updateProfile({ displayName:name });
-				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
+				dispatch(login(user.displayName, user.metadata.lastSignInTime));
 				dispatch(startLogged(true));
-				Swal.fire('Thanks for Register!', 'Welcome to BBVA','success' );
+				Swal.fire('Thanks for Register!', 'Welcome to BBVA', 'success');
 				dispatch(finishLoading());
 			}) 
 			.catch( e => { 
 				Swal.fire('Error', e.message, 'error');
 				console.log(e);  
 				dispatch(finishLoading()); 
-			
 			} );
 	};
 };
 
-export const login = (name ,lastSignTime ) => (
+export const login = (name ,lastSignTime) => (
 	{
 		type: types.login,
 		payload: {
@@ -55,13 +52,11 @@ export const login = (name ,lastSignTime ) => (
 export const startLogged = () => (
 	{
 		type: types.startLogged
-
 	}
 );
 
 export const finishLogged = () => (
 	{
 		type: types.finishLogged
-        
 	}
 );

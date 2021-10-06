@@ -6,6 +6,13 @@ import { Hour } from './Hour';
 
 export const Timer = ({ lastSignTime }) => {
 
+	moment.locale('es', {
+		longDateFormat : {
+			LT: 'h:mm:ss A', 
+			llll: 'ddd, MMM D YYYY LT',
+		}
+	});
+
 	const [actualTime, setActualTime] = useState(moment().format('llll'));
 	const [state, setstate] = useState({
 		days: 0,
@@ -21,11 +28,11 @@ export const Timer = ({ lastSignTime }) => {
 		const addHoursToSpain = moment(lastSignTime);
 		const pastTime = moment.duration(addHoursToSpain.diff(actualTime));
 		
-		let seconds = Math.abs(pastTime._data.seconds);
-		let minutes = Math.abs(pastTime._data.minutes);
-		let hours = Math.abs(pastTime._data.hours);
-		let days = Math.abs(pastTime._data.days);
-		
+		let seconds = Math.abs(pastTime.seconds());
+		let minutes = Math.abs(pastTime.minutes());
+		let hours = Math.abs(pastTime.hours());
+		let days = Math.abs(pastTime.days());
+
 		setstate({
 			days:  days < 10 ? `0${days}` : days,
 			hours: hours < 10 ? `0${hours}` : hours,
@@ -36,45 +43,34 @@ export const Timer = ({ lastSignTime }) => {
 	}, [actualTime]);
 
 	useEffect(() => {
-		
-		moment.locale('es', {
-			longDateFormat : {
-				LT: 'h:mm:ss A', 
-				L: 'MM/DD/YYYY',
-				l: 'M/D/YYYY',
-				LL: 'MMMM Do YYYY',
-				ll: 'MMM D YYYY',
-				LLL: 'MMMM Do YYYY LT',
-				lll: 'MMM D YYYY LT',
-				LLLL: 'dddd, MMMM Do YYYY LT',
-				llll: 'ddd, MMM D YYYY LT'
-			}
-		});
 
-		setInterval(() => {
-	
+		const intervalID =   setInterval(() => {
 			let getTime = moment().format('llll');
 			setActualTime(getTime);
 		}, 1000);
-	
+
+		return () => {
+			clearInterval(intervalID);
+		};
+			
 	}, []);
 
 	return (
 		<div className="timer_container">
 			<Hour  
-				hourNumber={days}
+				value={days}
 				label='days'
 			/>
 			<Hour
-				hourNumber={hours}  
+				value={hours}  
 				label='hours'
 			/>
 			<Hour 
-				hourNumber={minutes} 
+				value={minutes} 
 				label='minutes'
 			/>
 			<Hour 
-				hourNumber={seconds} 
+				value={seconds} 
 				label='seconds'
 			/>
 		</div>
