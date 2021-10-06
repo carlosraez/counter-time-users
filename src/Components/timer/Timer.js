@@ -52,7 +52,7 @@ export const Timer = ({ lastSignTime }) => {
 		});
 
 		setInterval(() => {
-			console.log('me ejecuto');
+	
 			let getTime = moment().format('llll');
 			setActualTime(getTime);
 		}, 1000);

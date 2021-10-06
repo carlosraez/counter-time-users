@@ -3,22 +3,32 @@ import { BrowserRouter as Router,
 	Switch,
 	Redirect,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-//import { firebase } from '../firebase/firebase-config';
+import { useDispatch, useSelector } from 'react-redux';
+import { firebase } from '../firebase/firebase-config';
 
 import { DashboardRoute  } from './DashboardRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { AuthRouter } from './AuthRouter';
+import { login, startLogged } from '../actions/actions';
 
 
 export const AppRouter = () => {
 
+	const dispatch = useDispatch();
 	const { logged } = useSelector(state => state.auth);
 
 	useEffect(() => {
-		// let getTime = moment().format('llll');
-		// setActualTime(getTime);
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				
+				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
+				dispatch(startLogged(true));
+		
+			} else {
+				console.log(user);
+			}
+		});
 		
 	
 	}, []);
