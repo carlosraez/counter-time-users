@@ -2,17 +2,17 @@
     display: flex;
 }
 
-.hour_format {
+.timerItem_format {
     flex-direction: column;
     margin-right: 20px;
 }
 
-.hour_number {
+.timerItem_number {
     color:$secondary;
     font-size: 51px;
 }
 
-.hour_label {
+.timerItem_label {
     color:$secondary;
     text-align: center;
 }

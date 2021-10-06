@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { finishLogged } from '../../actions/actions';
 import { Timer } from '../../Components/timer/Timer';
 
-
 export const HomeScreen = () => {
 
 	const dispatch = useDispatch();

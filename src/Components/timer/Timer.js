@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { Hour } from './Hour';
+import { TimerItem } from './TimerItem';
+
+moment.locale('es', {
+	longDateFormat : {
+		LT: 'h:mm:ss A', 
+		llll: 'ddd, MMM D YYYY LT',
+	}
+});
 
 export const Timer = ({ lastSignTime }) => {
-
-	moment.locale('es', {
-		longDateFormat : {
-			LT: 'h:mm:ss A', 
-			llll: 'ddd, MMM D YYYY LT',
-		}
-	});
 
 	const [actualTime, setActualTime] = useState(moment().format('llll'));
 	const [state, setstate] = useState({
@@ -57,19 +57,19 @@ export const Timer = ({ lastSignTime }) => {
 
 	return (
 		<div className="timer_container">
-			<Hour  
+			<TimerItem  
 				value={days}
 				label='days'
 			/>
-			<Hour
+			<TimerItem  
 				value={hours}  
 				label='hours'
 			/>
-			<Hour 
+			<TimerItem   
 				value={minutes} 
 				label='minutes'
 			/>
-			<Hour 
+			<TimerItem   
 				value={seconds} 
 				label='seconds'
 			/>
