@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Hour } from './Hour';
 
 export const Timer = ({ lastSignTime }) => {
-	console.log(lastSignTime);
+
 	const [actualTime, setActualTime] = useState(moment().format('llll'));
 	const [state, setstate] = useState({
 		days: 0,
@@ -18,28 +18,46 @@ export const Timer = ({ lastSignTime }) => {
 
 	useEffect(() => {
 
-		const addHoursToSpain = moment(lastSignTime).add(2, 'hours');
+		const addHoursToSpain = moment(lastSignTime);
 		const pastTime = moment.duration(addHoursToSpain.diff(actualTime));
+		
+		let seconds = Math.abs(pastTime._data.seconds);
+		let minutes = Math.abs(pastTime._data.minutes);
+		let hours = Math.abs(pastTime._data.hours);
+		let days = Math.abs(pastTime._data.days);
+		
 		setstate({
-			days:  pastTime._data.days < 10 ? `0${pastTime._data.days}` : pastTime._data.days,
-			hours: pastTime._data.hours < 10 ? `0${pastTime._data.hours}` : pastTime._data.hours,
-			minutes: pastTime._data.minutes < 10 ? `0${pastTime._data.minutes}` : pastTime._data.minutes,
-			seconds: pastTime._data.seconds < 10 ? `0${pastTime._data.seconds}` : pastTime._data.seconds,
+			days:  days < 10 ? `0${days}` : days,
+			hours: hours < 10 ? `0${hours}` : hours,
+			minutes: minutes < 10 ? `0${minutes}` : minutes,
+			seconds: seconds < 10 ? `0${seconds}` : seconds,
 		});
 	
 	}, [actualTime]);
 
 	useEffect(() => {
-		// let getTime = moment().format('llll');
-		// setActualTime(getTime);
+		
+		moment.locale('es', {
+			longDateFormat : {
+				LT: 'h:mm:ss A', 
+				L: 'MM/DD/YYYY',
+				l: 'M/D/YYYY',
+				LL: 'MMMM Do YYYY',
+				ll: 'MMM D YYYY',
+				LLL: 'MMMM Do YYYY LT',
+				lll: 'MMM D YYYY LT',
+				LLLL: 'dddd, MMMM Do YYYY LT',
+				llll: 'ddd, MMM D YYYY LT'
+			}
+		});
+
 		setInterval(() => {
+			console.log('me ejecuto');
 			let getTime = moment().format('llll');
 			setActualTime(getTime);
 		}, 1000);
 	
 	}, []);
-
-	
 
 	return (
 		<div className="timer_container">
