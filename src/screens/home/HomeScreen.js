@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { firebase } from '../../firebase/firebase-config';
-import Swal from 'sweetalert2';
 
 import { finishLogged } from '../../actions/actions';
 import { Timer } from '../../Components/timer/Timer';
+import { logoutUser } from '../../firebase/firebae-logout';
 
 export const HomeScreen = () => {
 
@@ -13,11 +12,7 @@ export const HomeScreen = () => {
 
 	const handleLogout = () => {
 		dispatch( finishLogged() );
-		firebase.auth().signOut().then(() => {
-			Swal.fire('Logout Success', 'BBVA tells you have a good day', 'success'); 
-		}).catch((e) => {
-			Swal.fire('Error', e.message, 'error');
-		});
+		logoutUser();
 	};
 
 	return (
