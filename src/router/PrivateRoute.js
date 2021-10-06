@@ -19,8 +19,6 @@ export const PrivateRoute = ({
 					: (<Redirect to='/auth/login' />) 
 
 			)}
-        
-        
 		/>
 	);
 };

@@ -16,8 +16,6 @@ export const PublicRoute = ({
 					: 
 					(<Component {...props} />)
 			)}
-        
-        
 		/>
 	);
 };

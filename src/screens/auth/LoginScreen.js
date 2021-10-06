@@ -11,7 +11,6 @@ import { setError, removeError } from '../../actions/ui';
 export const LoginScreen = () => {
 
 	const dispatch = useDispatch();
-	const { loading } = useSelector(state => state.ui);
 	const { msgError } = useSelector( state => state.ui );
 
 	const [formValues, handleInputChange] = useForm({
@@ -30,19 +29,15 @@ export const LoginScreen = () => {
 	};
 
 	const isFormValid = () => {
-          
-		if ( !validator.isEmail(email) ) {
+		if (!validator.isEmail(email) ) {
 			dispatch( setError('Email is not valid') );
-      
 			return false;
 		} 
-		else if ( password.length < 5 ) {
+		else if (password.length < 5) {
 			dispatch( setError('Password should be at least 6 characters and match each other') );
-           
 			return false;
-		} 
-        
-		dispatch( removeError() );
+		}  
+		dispatch(removeError());
 		return true;
 	};
 
@@ -84,9 +79,7 @@ export const LoginScreen = () => {
 				<button 
 					className="btn btn-outline-info button" 
 					onClick={handleLogin}
-					disabled={loading}
 				>
-           
                      Login </button>
 			</div>
 			<div className="button__container-handleLogin">

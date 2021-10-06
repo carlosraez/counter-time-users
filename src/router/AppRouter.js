@@ -21,16 +21,12 @@ export const AppRouter = () => {
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
-				
 				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
 				dispatch(startLogged(true));
-		
 			} else {
 				console.log(user);
 			}
 		});
-		
-	
 	}, []);
 
 	return (
