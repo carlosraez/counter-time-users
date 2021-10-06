@@ -32,10 +32,10 @@ export const Timer = ({ lastSignTime }) => {
 		const addHoursToSpain = moment(lastSignTime);
 		const pastTime = moment.duration(addHoursToSpain.diff(actualTime));
 		
-		let seconds = Math.abs(pastTime.seconds());
-		let minutes = Math.abs(pastTime.minutes());
-		let hours = Math.abs(pastTime.hours());
-		let days = Math.abs(pastTime.days());
+		const seconds = Math.abs(pastTime.seconds());
+		const minutes = Math.abs(pastTime.minutes());
+		const hours = Math.abs(pastTime.hours());
+		const days = Math.abs(pastTime.days());
 
 		setstate({
 			days: _formatHourString(days),
@@ -49,7 +49,7 @@ export const Timer = ({ lastSignTime }) => {
 	useEffect(() => {
 
 		const intervalID =   setInterval(() => {
-			let getTime = moment().format('llll');
+			const getTime = moment().format('llll');
 			setActualTime(getTime);
 		}, 1000);
 
