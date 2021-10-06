@@ -14,7 +14,7 @@ export const HomeScreen = () => {
 	const handleLogout = () => {
 		dispatch( finishLogged() );
 		firebase.auth().signOut().then(() => {
-			Swal.fire('Logout Success', 'BBVA tells you have a good day','success'); 
+			Swal.fire('Logout Success', 'BBVA tells you have a good day', 'success'); 
 		}).catch((e) => {
 			Swal.fire('Error', e.message, 'error');
 		});
