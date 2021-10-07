@@ -1,12 +1,20 @@
-# Getting Started with Create React App
+# EMPEZAR CON LA APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Para poder comenzar con la app, lo primero es clonar el proyecto en tu ordenador.
 
-## Available Scripts
+2. Abrir la terminal y sobre la carpeta del proyecto ejecutar el comando $npm install
 
-In the project directory, you can run:
+3. Ya en la terminal después de haber ejecutado el comando anterior, ejecutar el comando $npm start  
 
-### `npm start`
+4. El proyecto tiene las opciones de Registrarse o de hacer Login, así pues si deseas hacer login te escribo unos usuarios de prueba.
+
+## USUARIOS DE PRUEBA
+
+1. user:carlosraez@gmail.com  pass:123456 
+2. user:julia@gmail.com       pass:123456
+3. user:joseperez@gmail.com   pass:123456
+
+### ACCEDER A LA APP MEDIANTE UNA URL
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
