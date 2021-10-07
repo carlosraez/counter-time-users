@@ -4,7 +4,7 @@ import { BrowserRouter as Router,
 	Redirect,
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { firebase } from '../firebase/firebase-config';
+import { listenAuthStateChanges } from '../services/services-auth';
 
 import { DashboardRoute  } from './DashboardRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -19,7 +19,7 @@ export const AppRouter = () => {
 	const { logged } = useSelector(state => state.auth);
 
 	useEffect(() => {
-		firebase.auth().onAuthStateChanged((user) => {
+		listenAuthStateChanges((user) => {
 			if (user) {
 				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
 				dispatch(startLogged(true));

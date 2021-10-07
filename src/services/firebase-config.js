@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-
 const firebaseConfig = {
 	apiKey: 'AIzaSyAY1SjqMhq9SNCMUW1rBjvGNE_auMFV2j4',
 	authDomain: 'counter-time-user.firebaseapp.com',

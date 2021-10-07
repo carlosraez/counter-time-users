@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 import { finishLogged } from '../../actions/actions';
-import { Timer } from '../../Components/timer/Timer';
-import { logoutUser } from '../../firebase/firebae-logout';
+import { Timer } from '../../components/timer/Timer';
+import { logoutUser } from '../../services/services-auth';
 
 export const HomeScreen = () => {
 
@@ -12,7 +13,11 @@ export const HomeScreen = () => {
 
 	const handleLogout = () => {
 		dispatch( finishLogged() );
-		logoutUser();
+		logoutUser().then(() => {
+			Swal.fire('Logout Success', 'BBVA tells you have a good day', 'success'); 
+		}).catch((e) => {
+			Swal.fire('Error', e.message, 'error');
+		});
 	};
 
 	return (
