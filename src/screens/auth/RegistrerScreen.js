@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 
 import { useForm } from '../../hooks/useForm';
-import bbvaLogo  from '../../assets/Logo_BBVA_PNG.png';
+import bbvaLogo from '../../assets/Logo_BBVA_PNG.png';
 import { registerUser } from '../../actions/actions';
 import { setError, removeError } from '../../actions/ui';
 
 export const RegistrerScreen = () => {
-
 	const dispatch = useDispatch();
-	const { msgError } = useSelector( state => state.ui );
+	const { msgError } = useSelector(state => state.ui);
 
 	const [formValues, handleInputChange] = useForm({
 		email: '',
@@ -20,35 +19,33 @@ export const RegistrerScreen = () => {
 		password2: '',
 	});
     
-	const {email, password, password2, name } = formValues;
+	const { email, password, password2, name } = formValues;
     
 	const handleRegister = () => { 
-
 		if (isFormValid()) {
-			dispatch( registerUser(email, password, name, ));
+			dispatch(registerUser(email, password, name));
 		}
 	};
 
 	const isFormValid = () => {
-		//aqui hacemos la comprobación del formulario el cual comprobamos que es correcto
 		if (name.trim().length === 0) {
-			dispatch( setError('Name is required') );
+			dispatch(setError('Name is required'));
 			return false;
 		} else if (!validator.isEmail(email)) {
-			dispatch( setError('Email is not valid') );
+			dispatch(setError('Email is not valid'));
 			return false;
 		} else if (password !== password2 || password.length < 5) {
-			dispatch( setError('Password should be at least 6 characters and match each other') );
+			dispatch(setError('Password should be at least 6 characters and match each other'));
 			return false;
 		} 
-		dispatch( removeError() );
+		dispatch(removeError());
 		return true;
 	};
 
 	return (
 		<div>
 			<div className="auth__logoContainer">
-				<img src={bbvaLogo} alt="BBVA-LOGO"  className="card-img-top auth__brandLogo" />
+				<img src={bbvaLogo} alt="BBVA-LOGO" className="card-img-top auth__brandLogo" />
 			</div>
 			{
 				msgError && (
@@ -105,7 +102,7 @@ export const RegistrerScreen = () => {
 					className="btn btn-outline-info button" 
 					onClick={handleRegister}
 				>
-                         Register</button>
+                    Register</button>
 			</div>
 			<div className="button__container-handleLogin">
 				<Link to="/auth/login" className="button__handleLogin" >Already have and acount?</Link>

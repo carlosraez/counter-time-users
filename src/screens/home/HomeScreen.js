@@ -7,12 +7,11 @@ import { Timer } from '../../components/timer/Timer';
 import { logoutUser } from '../../services/services-auth';
 
 export const HomeScreen = () => {
-
 	const dispatch = useDispatch();
 	const { lastSignTime, name } = useSelector(state => state.auth);
 
 	const handleLogout = () => {
-		dispatch( finishLogged() );
+		dispatch(finishLogged());
 		logoutUser().then(() => {
 			Swal.fire('Logout Success', 'BBVA tells you have a good day', 'success'); 
 		}).catch((e) => {

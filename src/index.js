@@ -8,5 +8,4 @@ ReactDOM.render(
 	<App />,
 	document.getElementById('root')
 );
-
 serviceWorkerRegistration.unregister();

@@ -4,20 +4,12 @@ import moment from 'moment';
 
 import { TimerItem } from './TimerItem';
 
-moment.locale('es', {
-	longDateFormat : {
-		LT: 'h:mm:ss A', 
-		llll: 'ddd, MMM D YYYY LT',
-	}
-});
-
 const _formatHourString = (itemHour) => {
-	return (itemHour < 10 ? `0${itemHour}` : itemHour);
+	return itemHour < 10 ? `0${itemHour}` : itemHour;
 };
 
 export const Timer = ({ lastSignTime }) => {
-
-	const [actualTime, setActualTime] = useState(moment().format('llll'));
+	const [actualTime, setActualTime] = useState(moment());
 	const [state, setstate] = useState({
 		days: 0,
 		hours: 0,
@@ -25,12 +17,11 @@ export const Timer = ({ lastSignTime }) => {
 		seconds: 0,
 	});
 
-	const { days ,hours ,minutes ,seconds } = state;
+	const { days, hours, minutes, seconds } = state;
 
 	useEffect(() => {
-
-		const addHoursToSpain = moment(lastSignTime);
-		const pastTime = moment.duration(addHoursToSpain.diff(actualTime));
+		const momentLastSign = moment(Date.parse(lastSignTime));
+		const pastTime = moment.duration(momentLastSign.diff(actualTime));
 		
 		const seconds = Math.abs(pastTime.seconds());
 		const minutes = Math.abs(pastTime.minutes());
@@ -43,20 +34,17 @@ export const Timer = ({ lastSignTime }) => {
 			minutes: _formatHourString(minutes),
 			seconds: _formatHourString(seconds),
 		});
-	
 	}, [actualTime]);
 
 	useEffect(() => {
-
-		const intervalID =   setInterval(() => {
-			const getTime = moment().format('llll');
+		const intervalID = setInterval(() => {
+			const getTime = moment();
 			setActualTime(getTime);
 		}, 1000);
 
 		return () => {
 			clearInterval(intervalID);
-		};
-			
+		};	
 	}, []);
 
 	return (

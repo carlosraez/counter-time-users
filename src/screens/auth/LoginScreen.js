@@ -9,32 +9,31 @@ import { loginUser } from '../../actions/actions';
 import { setError, removeError } from '../../actions/ui';
 
 export const LoginScreen = () => {
-
 	const dispatch = useDispatch();
-	const { msgError } = useSelector( state => state.ui );
+	const { msgError } = useSelector(state => state.ui);
 
 	const [formValues, handleInputChange] = useForm({
-		email:'',
-		password:'',
+		email: '',
+		password: '',
 	});
     
 	const { email, password } = formValues;
     
 	const handleLogin = (e) => { 
 		e.preventDefault();
-         
-		if (isFormValid() ) {
-			dispatch( loginUser(email, password) ); 
+    
+		if (isFormValid()) {
+			dispatch(loginUser(email, password)); 
 		}
 	};
 
 	const isFormValid = () => {
-		if (!validator.isEmail(email) ) {
-			dispatch( setError('Email is not valid') );
+		if (!validator.isEmail(email)) {
+			dispatch(setError('Email is not valid'));
 			return false;
 		} 
 		else if (password.length < 5) {
-			dispatch( setError('Password should be at least 6 characters and match each other') );
+			dispatch(setError('Password should be at least 6 characters and match each other'));
 			return false;
 		}  
 		dispatch(removeError());
@@ -44,7 +43,7 @@ export const LoginScreen = () => {
 	return (
 		<div>
 			<div className="auth__logoContainer">
-				<img src={bbvaLogo} alt="bbva-logo-brand" className="card-img-top auth__brandLogo" />
+				<img src={bbvaLogo} alt="bbva-logo-brand" className="card-img-top auth__brandLogo"/>
 			</div>
 			{
 				msgError && (
@@ -53,8 +52,8 @@ export const LoginScreen = () => {
 					</div>
 				)
 			}
-			<div className ="mb-3">
-				<label  className="form-label">Email</label>
+			<div className="mb-3">
+				<label className="form-label">Email</label>
 				<input 
 					type="email" 
 					onChange={handleInputChange} 
@@ -65,7 +64,7 @@ export const LoginScreen = () => {
 				/>
 			</div>
 			<div className="mb-3">
-				<label  className="form-label">Password</label>
+				<label className="form-label">Password</label>
 				<input 
 					type="password" 
 					onChange={handleInputChange} 
@@ -80,7 +79,7 @@ export const LoginScreen = () => {
 					className="btn btn-outline-info button" 
 					onClick={handleLogin}
 				>
-                     Login </button>
+                    Login</button>
 			</div>
 			<div className="button__container-handleLogin">
 				<Link to="/auth/registrer" className="button__handleLogin" >Create New Account</Link>

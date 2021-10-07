@@ -12,16 +12,14 @@ import { PublicRoute } from './PublicRoute';
 import { AuthRouter } from './AuthRouter';
 import { login, startLogged } from '../actions/actions';
 
-
 export const AppRouter = () => {
-
 	const dispatch = useDispatch();
-	const { logged } = useSelector(state => state.auth);
+	const { logged = false } = useSelector(state => state.auth);
 
 	useEffect(() => {
 		listenAuthStateChanges((user) => {
 			if (user) {
-				dispatch(login(user.displayName ,user.metadata.lastSignInTime ));
+				dispatch(login(user.displayName, user.metadata.lastSignInTime));
 				dispatch(startLogged(true));
 			} else {
 				console.log(user);
@@ -34,15 +32,15 @@ export const AppRouter = () => {
 			<Switch>
 				<PublicRoute
 					path='/auth'
-					component={AuthRouter}
+					component={ AuthRouter }
 					isAuthenticated={ logged } 
 				/>
 				<PrivateRoute 
 					isAuthenticated={ logged } 
 					path="/" 
-					component={ DashboardRoute} 
+					component={ DashboardRoute } 
 				/>
-				<Redirect to="/auth/login" />
+				<Redirect to="/auth/login"/>
 			</Switch>
 		</Router>
 	);

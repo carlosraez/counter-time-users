@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch,Route,  Redirect } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { LoginScreen } from '../screens/auth/LoginScreen';
 import { RegistrerScreen } from '../screens/auth/RegistrerScreen';
 
@@ -18,7 +18,7 @@ export const AuthRouter = () => {
 						path='/auth/registrer'
 						component={ RegistrerScreen }
 					/>
-					<Redirect to="/auth/login" />
+					<Redirect to="/auth/login"/>
 				</Switch>
 			</div>
 		</div>

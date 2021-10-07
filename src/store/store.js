@@ -14,4 +14,5 @@ export const store = createStore(
 	reducers,
 	composeEnhancers(
 		applyMiddleware(thunk)
-	),); 
+	)
+); 
