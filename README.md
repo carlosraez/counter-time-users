@@ -16,8 +16,8 @@
 
 ### ACCEDER A LA APP MEDIANTE UNA URL
 
-
-
+1.  Puedes acceder a través de una url https://counter-time-user.web.app/ 
+2.  Disfruta de la app
 #### TECNOLOGÍAS UTILIZADAS
 
 1. React.js
